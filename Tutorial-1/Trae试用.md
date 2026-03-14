@@ -19,7 +19,6 @@ https://docs.trae.ai/
 ![alt text](image-5.png)
 3. 安装扩展插件
 ![alt text](image-6.png)
-![alt text](image-7.png)
 
 ## 项目配置
 1. 将本项目文件夹中的TraeConfigs/ProjectConfigs中的内容复制到Trae项目文件夹下
