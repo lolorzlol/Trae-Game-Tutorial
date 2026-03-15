@@ -116,6 +116,50 @@ description: Use when user mentions Unity MCP, CoplayDev/unity-mcp, or wants to 
 
 ## Common Workflows
 
+### Apply Material to Object
+```
+1. manage_asset: Create material
+   - action: "create"
+   - asset_type: "Material"
+   - path: "Assets/Materials/MyMaterial.mat"
+
+2. manage_components: Apply material to MeshRenderer
+   - action: "set_property"
+   - component_type: "MeshRenderer"
+   - property: "material"
+   - value: "Assets/Materials/MyMaterial.mat"
+   Note: Use property/value parameters, NOT properties parameter
+```
+
+### Create Prefab from Scene Object
+```
+1. manage_gameobject: Save existing object as prefab
+   - action: "modify"
+   - target: "Player" (or object name)
+   - save_as_prefab: true
+   - prefab_path: "Assets/Prefabs/Player.prefab"
+```
+
+### Set Object/Component References
+```
+1. manage_gameobject: Set field to reference another GameObject
+   - Use component_properties with find syntax:
+   component_properties = {
+       "MyScript": {
+           "targetObject": {"find": "Player", "method": "by_name"}
+       }
+   }
+
+2. Reference specific component on target:
+   component_properties = {
+       "MyScript": {
+           "playerHealth": {"find": "Player", "component": "HealthComponent"}
+       }
+   }
+
+Note: Prefab references must be configured manually
+```
+
 ### Create a Player Character
 ```
 1. manage_gameobject: Create capsule
