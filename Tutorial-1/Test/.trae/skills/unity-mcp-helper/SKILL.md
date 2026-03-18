@@ -207,6 +207,20 @@ Note: Prefab references must be configured manually
    - include_failed_tests: true (include details for failed tests)
 ```
 
+Example using batch_execute:
+```json
+{
+  "commands": [
+    {
+      "tool": "run_tests",
+      "params": {
+        "mode": "EditMode"
+      }
+    }
+  ]
+}
+```
+
 ## Tool Parameters Reference
 
 ### manage_gameobject

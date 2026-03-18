@@ -14,6 +14,7 @@
 - If editor scripts is created for tasks, execute it `automatically` via MCP, avoid execute manually. The explict guide is in **GameObjects Setup & Editing & Configuration**.
 - Use git for version control.
 - Add Tooltip attributes to editor-configurable variables.
+- Check the Unity Console log first when encountering bugs.
 
 ### Plan Mode Orchestration
 
@@ -87,6 +88,32 @@
   - `include_failed_tests`: Include test details for failed tests
 - After tests pass, refactor code through code-review.
 
+- Example using batch_execute to run and get tests results:
+```json
+{
+  "commands": [
+    {
+      "tool": "run_tests",
+      "params": {
+        "mode": "EditMode"
+      }
+    }
+  ]
+}
+{
+  "commands": [
+    {
+      "params": {
+        "job_id": "f210258c7dca4b13844a4c697b255e84",
+        "wait_timeout": 60,
+        "include_failed_tests": true
+      },
+      "tool": "get_test_job"
+    }
+  ]
+}
+```
+
 ## Skills Reference
 
 Load the appropriate skill before starting each workflow:
@@ -125,8 +152,3 @@ Load the appropriate skill before starting each workflow:
 ### Common Issues
 
 - When using unity-test-framework, forgetting to call the `unity-test-framework` skill causes compilation errors.
-
-### Debugging Steps
-
-- First check the Console window for compilation errors.
-- Check for any other issues as needed.

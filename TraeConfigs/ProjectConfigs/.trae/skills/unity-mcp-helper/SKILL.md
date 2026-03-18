@@ -186,6 +186,31 @@ description: Use when need to use Unity MCP, read console, or control Unity Edit
    - wait_timeout: 60 (seconds to wait for completion)
    - include_failed_tests: true (include details for failed tests)
 ```
+Example using batch_execute:
+```json
+{
+  "commands": [
+    {
+      "tool": "run_tests",
+      "params": {
+        "mode": "EditMode"
+      }
+    }
+  ]
+}
+{
+  "commands": [
+    {
+      "params": {
+        "job_id": "f210258c7dca4b13844a4c697b255e84",
+        "wait_timeout": 60,
+        "include_failed_tests": true
+      },
+      "tool": "get_test_job"
+    }
+  ]
+}
+```
 
 ## Tool Parameters Reference
 
