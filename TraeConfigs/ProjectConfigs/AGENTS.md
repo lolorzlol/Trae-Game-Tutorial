@@ -7,12 +7,11 @@
 - Check both `message` and `success` from MCP call results to determine success. When `message` doesn't match expectations, treat the call as failed.
 - When MCP calls fail, adjust parameters based on the returned `message` and retry.
 - Use `batch_execute` as much as possible to reduce MCP call times.
-- Follow `Test-Driven Development (TDD)` during development.
 - Check the Unity Editor `Console` log with `read_console` in `unityMCP` regularly for errors.
 - Ensure the editor is not in Play mode before executing editor scripts.
 - Write editor scripts to config and setup scene rather than direct `unityMCP` call.
 - If editor scripts is created for tasks, execute it `automatically` via MCP, avoid execute manually. The explict guide is in **GameObjects Setup & Editing & Configuration**.
-- Use git for version control.
+- Use git for version control. Add proper .gitignore before git init.
 - Add Tooltip attributes to editor-configurable variables.
 - Check the Unity Console log first when encountering bugs.
 
@@ -137,7 +136,7 @@ Load the appropriate skill before starting each workflow:
 ## GameObjects Setup & Editing & Configuration
 
 - Design the size and materials of different objects carefully.
-- **Automated Configuration with Editor Scripts**: When needing to set up complex references, create editor scripts (in `Assets/Scripts/Editor/` folder) to automate the configuration process:
+- **Automated Configuration with Editor Scripts**: When needing to set up complex references, create editor scripts (in `Assets/Editor/` folder) to automate the configuration process:
   - **Scene object references**: Use `GameObject.Find()` to locate objects in the scene.
   - **Prefab references**: Use `AssetDatabase.LoadAssetAtPath<T>()` to load prefabs and assets from disk.
   - Assign them directly to component fields programmatically. Add a menu item with `[MenuItem]` attribute to trigger the setup process.
