@@ -1,5 +1,15 @@
 # AGENTS.md
 
+## Skills Reference
+
+Load the appropriate skill before starting each workflow:
+
+| Workflow | Skill |
+|----------|-------|
+| Using unityMCP | `unity-mcp-skill` |
+| Using unity-test-framework | `unity-test-framework` |
+| Test-Driven Development | `test-driven-development` |
+
 ## Development Workflow
 
 ### Operation Requirements
@@ -81,47 +91,8 @@
 ### Test-Driven Development (TDD)
 
 - Follow the *Red-Green-Refactor* cycle: write failing tests first, then implement code, and run tests again to make them pass.
-- Run tests through `run_tests` in `unityMCP` with parameters:
-  -`mode`: "EditMode" or "PlayMode"
-  - `test_names`: Array of test names to run (optional, runs all if omitted)
-  - `include_failed_tests`: Include test details for failed tests
+- Run tests through `run_tests` in `unityMCP`.
 - After tests pass, refactor code through code-review.
-
-- Example using batch_execute to run and get tests results:
-```json
-{
-  "commands": [
-    {
-      "tool": "run_tests",
-      "params": {
-        "mode": "EditMode"
-      }
-    }
-  ]
-}
-{
-  "commands": [
-    {
-      "params": {
-        "job_id": "f210258c7dca4b13844a4c697b255e84",
-        "wait_timeout": 60,
-        "include_failed_tests": true
-      },
-      "tool": "get_test_job"
-    }
-  ]
-}
-```
-
-## Skills Reference
-
-Load the appropriate skill before starting each workflow:
-
-| Workflow | Skill |
-|----------|-------|
-| Using unityMCP | `unity-mcp-helper` |
-| Using unity-test-framework | `unity-test-framework` |
-| Test-Driven Development | `test-driven-development` |
 
 ## Preferences
 
