@@ -2,8 +2,6 @@
 
 [English](README_en.md) | 简体中文
 
-<img src="image.png" width="30%">
-
 游戏编程助手，用于 Trae + Unity 游戏开发，内置教程案例。
 
 基于 [Superpowers](https://github.com/obra/superpowers) + [unity-mcp](https://github.com/CoplayDev/unity-mcp) + Unity Test Framework 构建。
