@@ -6,6 +6,8 @@
 
 基于 [Superpowers](https://github.com/obra/superpowers) + [unity-mcp](https://github.com/CoplayDev/unity-mcp) + Unity Test Framework 构建。
 
+> **更新说明**：最新版修复了教程中 MCP 配置部分的问题，新增了完整的Trae中 MCP 开关配置步骤。
+
 ## 快速开始
 
 | 步骤 | 教程 |
