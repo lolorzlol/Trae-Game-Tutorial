@@ -3,7 +3,7 @@
 ## 提示词
 
 ```
-使用 superpowers 工作流，balabala
+严格使用 superpowers 工作流，balabala
 ```
 
 ## 说明

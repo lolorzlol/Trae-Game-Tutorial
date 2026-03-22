@@ -137,7 +137,7 @@ https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main
 ### 步骤 1：输入提示词
 
 ```
-用 superpowers 工作流，balabala
+严格使用 superpowers 工作流，balabala
 ```
 
 ![输入提示词](image.png)
