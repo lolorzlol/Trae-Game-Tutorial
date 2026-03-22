@@ -16,10 +16,11 @@ Load the appropriate skill before starting each workflow:
 ### Operation Requirements
 - Check both `message` and `success` from MCP call results to determine success
 - When MCP calls fail, adjust parameters based on the returned `message` and retry
-- Do not use MCP to create folders
 - Use `batch_execute` as much as possible to reduce MCP call times
 - Ensure the editor is not in Play mode before executing editor scripts
 - Execute editor scripts automatically via `unityMCP` (avoid manual execution)
+- Delete one-time use editor scripts after execution succeeds
+- Use `manage_gameobject` or editor scripts to save an existing object as a prefab
 - Use git for version control, add proper `.gitignore` before `git init`
 - Add Tooltip attributes to editor-configurable variables
 - Check Unity Console log first when encountering bugs
@@ -107,16 +108,13 @@ Load the appropriate skill before starting each workflow:
 
 ---
 
-## Create Prefabs Example
+## unityMCP examples
 
-Use `manage_gameobject` to save an existing object as a prefab:
-
+### Create Folder
 ```json
 {
-  "action": "modify",
-  "target": "Player",
-  "save_as_prefab": true,
-  "prefab_path": "Assets/Prefabs/Player.prefab"
+  "action": "create_folder",
+  "path": "Assets/Materials"
 }
 ```
 
