@@ -14,13 +14,14 @@ Load the appropriate skill before starting each workflow:
 ## Development Workflow
 
 ### Operation Requirements
+
 - Check both `message` and `success` from MCP call results to determine success
 - When MCP calls fail, adjust parameters based on the returned `message` and retry
+- Use bash commands to create folders (e.g., `mkdir -p`)
 - Use `batch_execute` as much as possible to reduce MCP call times
 - Ensure the editor is not in Play mode before executing editor scripts
 - Execute editor scripts automatically via `unityMCP` (avoid manual execution)
 - Delete one-time use editor scripts after execution succeeds
-- Use `manage_gameobject` or editor scripts to save an existing object as a prefab
 - Use git for version control, add proper `.gitignore` before `git init`
 - Add Tooltip attributes to editor-configurable variables
 - Check Unity Console log first when encountering bugs
@@ -95,29 +96,39 @@ Load the appropriate skill before starting each workflow:
 - Follow the **Red-Green-Refactor** cycle
 - Run tests through `run_tests` in `unityMCP`
 - After tests pass, refactor code through code-review
-- Example workflow:
 
-  **Step 1: Run tests**
-  ```json
-  { "tool": "run_tests", "params": { "mode": "EditMode" } }
-  ```
+**Example Workflow:**
 
-  **Step 2: Get results** (use job_id from step 1)
-  ```json
-  { "tool": "get_test_job", "params": { "job_id": "<job_id>", "wait_timeout": 60, "include_failed_tests": true } }
-  ```
+Step 1: Run tests
+
+```json
+{ "tool": "run_tests", "params": { "mode": "EditMode" } }
+```
+
+Step 2: Get results (use `job_id` from step 1)
+
+```json
+{ "tool": "get_test_job", "params": { "job_id": "<job_id>", "wait_timeout": 60, "include_failed_tests": true } }
+```
 
 ---
 
-## unityMCP examples
+## Editor Scripts
 
-### Create Folder
-```json
-{
-  "action": "create_folder",
-  "path": "Assets/Materials"
-}
-```
+### Automated Configuration
+
+Use editor scripts (in `Assets/Editor/`) to automate complex setups:
+
+- **Scene object references**: Use `GameObject.Find()` to locate objects
+- **Prefab references**: Use `AssetDatabase.LoadAssetAtPath<T>()` to load assets from disk
+- **Trigger setup**: Add `[MenuItem]` attribute to create a menu item for the setup process
+
+### Running Editor Scripts
+
+1. Use `[MenuItem("YourMenuPath")]` attribute on a static method
+2. Refresh Unity with `mcp_unityMCP_refresh_unity` to compile
+3. Execute the menu item with `mcp_unityMCP_execute_menu_item`
+4. The script will run in Unity and perform configured actions
 
 ---
 
@@ -131,30 +142,9 @@ Load the appropriate skill before starting each workflow:
 
 - Do not use `git worktree`
 
----
-
-## GameObjects Setup
+### GameObjects Setup
 
 - Design the size and materials of different objects carefully
-
----
-
-## Editor Scripts
-
-**Automated Configuration:**
-
-Use editor scripts (in `Assets/Editor/`) to automate complex setups:
-
-- **Scene object references**: Use `GameObject.Find()` to locate objects
-- **Prefab references**: Use `AssetDatabase.LoadAssetAtPath<T>()` to load assets from disk
-- **Trigger setup**: Add `[MenuItem]` attribute to create a menu item for the setup process
-
-**Running Editor Scripts:**
-
-1. Use `[MenuItem("YourMenuPath")]` attribute on a static method
-2. Refresh Unity with `mcp_unityMCP_refresh_unity` to compile
-3. Execute the menu item with `mcp_unityMCP_execute_menu_item`
-4. The script will run in Unity and perform configured actions
 
 ---
 
