@@ -1,6 +1,6 @@
 # Trae 项目配置详解
 
-本文档介绍 `.trae/` 目录下的项目配置，帮助你理解和复用。
+`.trae/` 目录下放的是项目配置，这篇文章把结构捋清楚，方便你复制到自己的项目里用。
 
 ---
 
@@ -151,15 +151,13 @@
 
 ### AGENTS.md
 
-**位置：** 项目根目录（与 `.trae/` 同级）
+放在项目根目录，和 `.trae/` 同级。
 
-**作用：** 项目级 AI 指令，定义工作流程、代码规范、偏好设置。
-
-**主要内容：** Skills Reference、Development Workflow、Testing、Preferences、Troubleshooting
+里面写的是项目级 AI 指令：工作流程、代码规范、偏好设置这些。
 
 ### mcp.json
 
-**位置：** `.trae/mcp.json`
+放在 `.trae/mcp.json`，配置 MCP 服务器连接：
 
 ```json
 {
@@ -175,69 +173,71 @@
 
 ### 3.1 Superpowers 技能（通用流程）
 
-> 来源：superpowers 技能集，适用于任何项目
+来自 superpowers 技能集，任何项目都能用。
 
-| 技能 | 触发条件 | 作用 |
-|------|----------|------|
-| **using-superpowers** | 对话开始时 | 决定是否需要调用其他技能 |
-| **brainstorming** | 创建功能前 | 探索需求、设计方案 |
-| **writing-plans** | 有需求后，写代码前 | 编写实施计划 |
-| **executing-plans** | 有计划后 | 按步骤执行 |
+| 技能 | 什么时候用 | 干什么 |
+|------|-----------|--------|
+| **using-superpowers** | 对话开始时 | 判断要不要调用其他技能 |
+| **brainstorming** | 创建功能前 | 撸需求、出方案 |
+| **writing-plans** | 需求明确了，写代码前 | 出实施计划 |
+| **executing-plans** | 有计划后 | 一步步执行 |
 | **test-driven-development** | 实现功能时 | 先写测试再写代码 |
-| **systematic-debugging** | 遇到 bug 时 | 系统化查找根因 |
-| **verification-before-completion** | 声称完成前 | 验证确实完成 |
+| **systematic-debugging** | 遇到 bug 时 | 系统化找根因 |
+| **verification-before-completion** | 说完成前 | 验证真完成了 |
 | **dispatching-parallel-agents** | 有 2+ 独立任务时 | 并行调度代理 |
 | **subagent-driven-development** | 执行计划时 | 子代理驱动开发 |
-| **receiving-code-review** | 收到审查反馈时 | 处理审查意见 |
+| **receiving-code-review** | 收到审查反馈时 | 处理意见 |
 | **requesting-code-review** | 完成主要步骤后 | 请求代码审查 |
-| **finishing-a-development-branch** | 实现完成后 | 决定如何集成 |
+| **finishing-a-development-branch** | 实现完成后 | 决定怎么集成 |
 | **using-git-worktrees** | 需要隔离工作时 | 创建隔离工作树 |
 
 ### 3.2 项目特定技能
 
-| 技能 | 用途 |
-|------|------|
-| **unity-mcp-orchestrator** | Unity MCP 工具的最佳实践 |
+| 技能 | 干什么 |
+|------|--------|
+| **unity-mcp-orchestrator** | Unity MCP 工具最佳实践 |
 | **unity-test-framework** | Unity 测试框架 asmdef 配置 |
 
 ### 3.3 领域技能
 
-| 技能 | 用途 |
-|------|------|
-| **game-design** | 游戏设计（独立技能，34个参考文件） |
+| 技能 | 干什么 |
+|------|--------|
+| **game-design** | 游戏设计，独立技能，有 34 个参考文件 |
 | **game-development** | 游戏开发编排器，路由到子技能 |
 | **game-development/2d-games** | 2D 游戏开发模式 |
 | **game-development/3d-games** | 3D 游戏开发模式 |
-| **game-development/game-design** | 基础游戏设计原则（核心循环、GDD、玩家心理） |
+| **game-development/game-design** | 基础游戏设计原则：核心循环、GDD、玩家心理 |
 | **game-development/mobile-games** | 移动端游戏 |
 | **game-development/web-games** | 网页游戏 |
 | **game-development/vr-ar** | VR/AR 开发 |
 | **game-development/multiplayer** | 多人游戏网络 |
 
+> 注意区分 `game-design`（顶层技能，34个参考文件）和 `game-development/game-design`（编排器子技能，基础原则）。
+
 ### 3.4 game-design 参考资料详情
 
 | 主题 | 文件 |
 |------|------|
-| **角色优化设计** | `character-optimization-design.md` + 示例 |
-| **动态难度调整** | `dynamic-difficulty-adjustment.md` + 示例 |
-| **体验节奏结构** | `experience-pacing-structure.md` + 注意力管理 |
-| **游戏能力与谜题** | `game-competency-puzzle-design.md` + 示例 |
-| **游戏设计方法论** | `game-design-methodology.md` + 方法详情 |
-| **设计原则参考** | `game-design-principles-reference.md` + 完整索引 |
-| **开发规划** | `game-development-planning.md` + 规划示例 |
-| **玩家心理决策** | `player-psychology-decisions.md` + 偏见示例 |
-| **强化反馈系统** | `reinforcement-feedback-systems.md` + 奖励系统 |
-| **协同与主题设计** | `synergy-thematic-design.md` + 主题示例 |
-| **视觉玩家引导** | `visual-player-guidance.md` + 示例 |
-| **倍增/减半平衡** | `doubling-halving-balance.md` |
-| **环境叙事技巧** | `environmental-storytelling-technique.md` |
-| **费茨定律（UI瞄准）** | `fitts-law-ui-aiming.md` |
-| **心流状态设计** | `flow-state-design-framework.md` |
-| **基本归因错误测试** | `fundamental-attribution-error-testing.md` |
-| **原型测试** | `game-prototyping-testing.md` |
-| **团队管理** | `game-team-management.md` |
-| **黄金比例设计** | `golden-ratio-design.md` |
-| **希克定律（决策优化）** | `hicks-law-decision-optimization.md` |
-| **玩家错误处理** | `player-error-handling.md` |
-| **以用户为中心设计** | `user-centered-design.md` |
-| **索引文件** | `index.md`, `skill.md` |
+| 角色优化设计 | `character-optimization-design.md` + 示例 |
+| 动态难度调整 | `dynamic-difficulty-adjustment.md` + 示例 |
+| 体验节奏结构 | `experience-pacing-structure.md` + 注意力管理 |
+| 游戏能力与谜题 | `game-competency-puzzle-design.md` + 示例 |
+| 游戏设计方法论 | `game-design-methodology.md` + 方法详情 |
+| 设计原则参考 | `game-design-principles-reference.md` + 完整索引 |
+| 开发规划 | `game-development-planning.md` + 规划示例 |
+| 玩家心理决策 | `player-psychology-decisions.md` + 偏见示例 |
+| 强化反馈系统 | `reinforcement-feedback-systems.md` + 奖励系统 |
+| 协同与主题设计 | `synergy-thematic-design.md` + 主题示例 |
+| 视觉玩家引导 | `visual-player-guidance.md` + 示例 |
+| 倍增/减半平衡 | `doubling-halving-balance.md` |
+| 环境叙事技巧 | `environmental-storytelling-technique.md` |
+| 费茨定律（UI瞄准） | `fitts-law-ui-aiming.md` |
+| 心流状态设计 | `flow-state-design-framework.md` |
+| 基本归因错误测试 | `fundamental-attribution-error-testing.md` |
+| 原型测试 | `game-prototyping-testing.md` |
+| 团队管理 | `game-team-management.md` |
+| 黄金比例设计 | `golden-ratio-design.md` |
+| 希克定律（决策优化） | `hicks-law-decision-optimization.md` |
+| 玩家错误处理 | `player-error-handling.md` |
+| 以用户为中心设计 | `user-centered-design.md` |
+| 索引文件 | `index.md`, `skill.md` |
